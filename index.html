@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#050505">
+<meta name="description" content="Airton Márquez — AI Developer Junior & Full-Stack Builder. Co-fundador de ScooterCoop. LLMs, agentes IA, automatización y desarrollo web en Barranquilla, CO.">
+<meta name="author" content="Airton Márquez Abril">
+<title>Airton Márquez — AI Developer & Full-Stack Builder</title>
+
+<!-- OG -->
+<meta property="og:title" content="Airton Márquez — AI Developer & Full-Stack Builder">
+<meta property="og:description" content="LLMs, agentes IA, automatización y desarrollo web. Co-fundador de ScooterCoop.">
+<meta property="og:type" content="website">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+</head>
+<body>
+
+<!-- =============== TOPBAR =============== -->
+<header class="topbar">
+  <a class="brand" href="#hero" aria-label="Inicio">
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 17l6-6 4 4 6-8"/>
+        <circle cx="4" cy="17" r="1.5" fill="currentColor"/>
+        <circle cx="20" cy="7" r="1.5" fill="currentColor"/>
+      </svg>
+    </span>
+    <span class="brand-text">Airton<span class="brand-dot">.</span></span>
+  </a>
+
+  <nav class="nav" aria-label="Principal">
+    <a href="#about">Sobre mí</a>
+    <a href="#web">Web</a>
+    <a href="#ai">IA &amp; Open Source</a>
+    <a href="#skills">Stack</a>
+    <a href="#contact">Contacto</a>
+  </nav>
+
+  <div class="topbar-right">
+    <span class="status" title="Disponible para nuevas oportunidades">
+      <span class="status-dot" aria-hidden="true"></span>
+      <span>Open to work</span>
+    </span>
+    <a class="btn btn-primary btn-sm" href="#contact">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 4h16v16H4z"/><path d="M4 7l8 6 8-6"/>
+      </svg>
+      <span>Hablemos</span>
+    </a>
+  </div>
+</header>
+
+<!-- =============== HERO =============== -->
+<section id="hero" class="hero">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <div class="eyebrow">
+        <span class="eyebrow-bar"></span>
+        <span>AI Developer Junior · Full-Stack · Barranquilla, CO</span>
+      </div>
+
+      <h1 class="hero-title">
+        Construyo productos web
+        <span class="grad">impulsados por IA</span>
+        que la gente realmente usa.
+      </h1>
+
+      <p class="hero-sub">
+        Co-fundador y desarrollador principal en <strong>ScooterCoop</strong>.
+        Diseño y entrego LLMs, agentes, automatizaciones y aplicaciones web full-stack —
+        desde el prompt hasta el deploy.
+      </p>
+
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#web">
+          <span>Ver proyectos</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M13 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <a class="btn btn-ghost" href="https://github.com/TriggerXZ" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.87-1.54-3.87-1.54-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.34.96.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.5 3.17-1.18 3.17-1.18.63 1.59.24 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.41-5.26 5.69.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.21.67.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+          <span>GitHub</span>
+        </a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/airton-m%C3%A1rquez-abril-5a9969426" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.59 0 4.25 2.36 4.25 5.43v6.31zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.78C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.78 24h20.44c.98 0 1.78-.78 1.78-1.74V1.74C24 .78 23.2 0 22.22 0z"/></svg>
+          <span>LinkedIn</span>
+        </a>
+      </div>
+
+      <div class="kpis">
+        <div class="kpi">
+          <div class="kpi-num">4</div>
+          <div class="kpi-lbl">Productos web en producción</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-num">5+</div>
+          <div class="kpi-lbl">Skills / herramientas IA publicadas</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-num">22<span class="kpi-suf">/22</span></div>
+          <div class="kpi-lbl">Tests pasando en hook de seguridad</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-num">100<span class="kpi-suf">%</span></div>
+          <div class="kpi-lbl">Open Source · MIT</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Visual derecho: panel glassmorphism con "code preview" -->
+    <div class="hero-visual" aria-hidden="true">
+      <div class="window">
+        <div class="window-bar">
+          <span class="dot dot-r"></span>
+          <span class="dot dot-y"></span>
+          <span class="dot dot-g"></span>
+          <span class="window-title">~/projects/portfolio</span>
+        </div>
+        <pre class="code"><code><span class="c-c">// build_agent_skill.js</span>
+<span class="c-k">const</span> <span class="c-v">dante</span> = {
+  role: <span class="c-s">"AI Dev Junior"</span>,
+  stack: [<span class="c-s">"Claude"</span>, <span class="c-s">"LLMs"</span>, <span class="c-s">"Astro"</span>, <span class="c-s">"Node"</span>],
+  shipping: <span class="c-b">true</span>,
+  <span class="c-f">build</span>: <span class="c-k">async</span> (idea) =&gt; {
+    <span class="c-k">const</span> ship = <span class="c-k">await</span> <span class="c-f">design</span>(idea)
+                        .<span class="c-f">prompt</span>()
+                        .<span class="c-f">ship</span>();
+    <span class="c-k">return</span> ship.<span class="c-f">users</span> &gt; <span class="c-n">0</span>;
+  }
+};
+
+<span class="c-f">dante</span>.<span class="c-f">build</span>(<span class="c-s">"ScooterCoop"</span>); <span class="c-c">// production · 1,240+ riders</span></code></pre>
+      </div>
+
+      <!-- floating mini cards -->
+      <div class="float-card float-1">
+        <div class="float-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 12l2 2 4-4"/>
+            <circle cx="12" cy="12" r="10"/>
+          </svg>
+        </div>
+        <div>
+          <div class="float-title">22/22 tests</div>
+          <div class="float-sub">block-destructive-commands</div>
+        </div>
+      </div>
+
+      <div class="float-card float-2">
+        <div class="float-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="float-title">5 skills</div>
+          <div class="float-sub">Claude Code · open source</div>
+        </div>
+      </div>
+
+      <div class="float-card float-3">
+        <div class="float-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/>
+          </svg>
+        </div>
+        <div>
+          <div class="float-title">Astro · i18n</div>
+          <div class="float-sub">ES / EN · SEO local</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-bottom">
+    <span class="scroll-cue" aria-hidden="true">Desliza</span>
+    <span class="scroll-line"></span>
+  </div>
+</section>
+
+<!-- =============== MARQUEE =============== -->
+<section class="marquee" aria-label="Tecnologías">
+  <div class="marquee-track">
+    <span>Claude Code</span><span>·</span>
+    <span>OpenAI API</span><span>·</span>
+    <span>LLMs</span><span>·</span>
+    <span>RAG</span><span>·</span>
+    <span>Prompt Engineering</span><span>·</span>
+    <span>Astro</span><span>·</span>
+    <span>JavaScript</span><span>·</span>
+    <span>TypeScript</span><span>·</span>
+    <span>Python</span><span>·</span>
+    <span>Bash</span><span>·</span>
+    <span>SQL</span><span>·</span>
+    <span>Netlify</span><span>·</span>
+    <span>Vercel</span><span>·</span>
+    <span>Render</span><span>·</span>
+    <span>GitHub Actions</span><span>·</span>
+    <span>Claude Code</span><span>·</span>
+    <span>OpenAI API</span><span>·</span>
+    <span>LLMs</span><span>·</span>
+    <span>RAG</span><span>·</span>
+    <span>Prompt Engineering</span><span>·</span>
+    <span>Astro</span><span>·</span>
+    <span>JavaScript</span><span>·</span>
+    <span>TypeScript</span><span>·</span>
+    <span>Python</span><span>·</span>
+    <span>Bash</span><span>·</span>
+    <span>SQL</span><span>·</span>
+    <span>Netlify</span><span>·</span>
+    <span>Vercel</span><span>·</span>
+    <span>Render</span><span>·</span>
+    <span>GitHub Actions</span><span>·</span>
+  </div>
+</section>
+
+<!-- =============== ABOUT =============== -->
+<section id="about" class="section">
+  <header class="section-head">
+    <div class="eyebrow"><span class="eyebrow-bar"></span><span>01 · Sobre mí</span></div>
+    <h2 class="section-title">IA práctica + producto que la gente usa.</h2>
+    <p class="section-sub">No me quedo en tutoriales: entrego. Mi tesis: el mejor modelo del mundo no sirve si no resuelve un problema real de alguien.</p>
+  </header>
+
+  <div class="bento">
+    <article class="card card-bio">
+      <div class="card-label">Bio</div>
+      <h3>Desarrollador AI Junior · Full-Stack · Co-fundador</h3>
+      <p>
+        Construyo soluciones digitales y automatizaciones con foco en IA generativa.
+        Soy co-fundador y desarrollador principal en <strong>ScooterCoop</strong>, donde
+        he llevado el producto desde cero: la web, los sistemas de reservas y la marca.
+        Antes trabajé como Desarrollador Full-Stack en <strong>RMG Insurance Service</strong>
+        (componentes UI, diseño responsive, soporte a base de datos).
+      </p>
+      <p>
+        Vengo de formación técnica en <strong>Programación Web (Universidad del Litoral)</strong>
+        y me actualizo de forma constante: actualmente profundizando en agentes IA, RAG,
+        N8N y cloud (Azure / GCP) para cerrar el stack completo de soluciones empresariales.
+      </p>
+    </article>
+
+    <article class="card card-stat">
+      <div class="card-label">En números</div>
+      <ul class="stat-list">
+        <li><span>Riders alcanzados</span><strong>1,240+</strong></li>
+        <li><span>Reviews verificados</span><strong>2,340</strong></li>
+        <li><span>Tests pasando (hook seguridad)</span><strong>22 / 22</strong></li>
+        <li><span>Proyectos en producción</span><strong>4</strong></li>
+      </ul>
+    </article>
+
+    <article class="card card-pillars">
+      <div class="card-label">Cómo trabajo</div>
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <div>
+          <h4>De la idea al deploy</h4>
+          <p>Diseño, prompt, código, tests, deploy. Sin pasos fantasma.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <div>
+          <h4>Calidad sobre cantidad</h4>
+          <p>Tests, edge cases, idempotencia. Lo que llega a main, funciona.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <div>
+          <h4>Honestidad técnica</h4>
+          <p>Si no lo he hecho, no lo pongo. Si está en proceso, lo digo.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- =============== WEB PROJECTS =============== -->
+<section id="web" class="section">
+  <header class="section-head">
+    <div class="eyebrow"><span class="eyebrow-bar"></span><span>02 · Proyectos web</span></div>
+    <h2 class="section-title">Productos en producción, no demos.</h2>
+    <p class="section-sub">Cada uno está live, con URL pública y stack real.</p>
+  </header>
+
+  <div class="projects">
+    <!-- ScooterCoop (feature card grande) -->
+    <article class="proj proj-feature">
+      <div class="proj-meta">
+        <div class="proj-tag tag-feat">Co-fundador · Developer</div>
+        <h3 class="proj-title">ScooterCoop</h3>
+        <p class="proj-desc">
+          Plataforma de alquiler de scooters eléctricos en el Malecón del Río, Barranquilla.
+          Sistema de reservas, planes (30 min / 40 min / 1 h), galería, sección de impacto
+          ambiental, reseñas verificadas (2,340) y CTA a WhatsApp. Producto en operación
+          continua desde 2025.
+        </p>
+        <ul class="proj-stats">
+          <li><strong>1,240+</strong><span>rutas</span></li>
+          <li><strong>2,340</strong><span>reseñas</span></li>
+          <li><strong>8,450 km</strong><span>recorridos</span></li>
+          <li><strong>12.5 kg</strong><span>CO₂ ahorrado</span></li>
+        </ul>
+        <div class="proj-stack">
+          <span>Astro</span><span>JavaScript</span><span>CSS</span><span>Netlify</span><span>WhatsApp API</span>
+        </div>
+        <div class="proj-links">
+          <a class="btn btn-primary btn-sm" href="https://scootercoop.netlify.app/" target="_blank" rel="noopener">
+            <span>Ver sitio</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </a>
+          <a class="btn btn-ghost btn-sm" href="https://github.com/TriggerXZ/ScooterCoop" target="_blank" rel="noopener">
+            <span>Código</span>
+          </a>
+        </div>
+      </div>
+      <div class="proj-visual">
+        <div class="browser-frame">
+          <div class="window-bar">
+            <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+            <span class="window-title">scootercoop.netlify.app</span>
+          </div>
+          <div class="browser-shot shot-scooter">
+            <div class="shot-nav">
+              <div class="shot-logo">ScooterCoop</div>
+              <div class="shot-links"><span>Servicios</span><span>Precios</span><span>Galería</span><span>Reservar</span></div>
+            </div>
+            <div class="shot-hero">
+              <div class="shot-h1">Muévete con <em>SCOOTERCOOP</em></div>
+              <div class="shot-sub">Alquila un scooter eléctrico y explora el malecón del Rio rápido, ecológico y divertido.</div>
+              <div class="shot-cta">Alquila Ahora</div>
+            </div>
+            <div class="shot-grid">
+              <div class="shot-card"><div class="shot-num">12.5 kg</div><div class="shot-lbl">CO₂ Ahorrado</div></div>
+              <div class="shot-card"><div class="shot-num">1,240</div><div class="shot-lbl">Rutas</div></div>
+              <div class="shot-card"><div class="shot-num">8,450 km</div><div class="shot-lbl">Recorridos</div></div>
+              <div class="shot-card"><div class="shot-num">4.8 ★</div><div class="shot-lbl">Rating</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Joan Collante -->
+    <article class="proj">
+      <div class="proj-tag">Cliente real</div>
+      <h3 class="proj-title">Joan Collante · Restauración Física</h3>
+      <p class="proj-desc">
+        Sitio para fisioterapeuta deportivo. Branding "Kinetic Lab", bilingüe ES/EN,
+        3 servicios (rehabilitación funcional, fisioterapia deportiva, terapia manual),
+        agendamiento directo por WhatsApp y copy orientado a conversión.
+      </p>
+      <div class="proj-stack">
+        <span>Astro</span><span>i18n</span><span>Vercel</span><span>WhatsApp</span>
+      </div>
+      <div class="proj-links">
+        <a class="btn btn-primary btn-sm" href="https://joan-collante-fisioterapia.vercel.app/es/" target="_blank" rel="noopener">Ver sitio <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="proj-shot">
+        <div class="shot-mini shot-joan">
+          <div class="shot-mini-head">JOAN M. COLLANTE B.</div>
+          <div class="shot-mini-h1">RESTAURACIÓN FÍSICA INTEGRAL</div>
+          <div class="shot-mini-row"><div class="mchip">200+ Pacientes</div><div class="mchip">EN / ES</div><div class="mchip">3 Servicios</div></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Versio -->
+    <article class="proj">
+      <div class="proj-tag">Producto · Privacidad</div>
+      <h3 class="proj-title">Versio · Comparador de documentos</h3>
+      <p class="proj-desc">
+        Herramienta para detectar cambios entre versiones de documentos (.docx, .txt, .pdf,
+        .xlsx, .xls). Procesamiento 100% local — la privacidad primero, ningún archivo sale
+        del navegador. Modo claro/oscuro y entrada por archivos o texto.
+      </p>
+      <div class="proj-stack">
+        <span>JavaScript</span><span>Client-side</span><span>File API</span>
+      </div>
+      <div class="proj-links">
+        <a class="btn btn-primary btn-sm" href="https://verzi.netlify.app/" target="_blank" rel="noopener">Ver sitio <span aria-hidden="true">↗</span></a>
+        <a class="btn btn-ghost btn-sm" href="https://github.com/TriggerXZ/versio" target="_blank" rel="noopener">Código</a>
+      </div>
+      <div class="proj-shot">
+        <div class="shot-mini shot-versio">
+          <div class="shot-mini-h1">Compara documentos</div>
+          <div class="shot-mini-sub">Detecta cambios entre versiones · 100% local</div>
+          <div class="shot-mini-row">
+            <div class="mchip">.docx</div><div class="mchip">.pdf</div><div class="mchip">.txt</div><div class="mchip">.xlsx</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- BQanime -->
+    <article class="proj">
+      <div class="proj-tag">Hobby · Producción</div>
+      <h3 class="proj-title">BQ Anime</h3>
+      <p class="proj-desc">
+        Directorio de anime con búsqueda y catálogo. Desplegado en Render (free tier
+        — por eso a veces está en cold start). Frontend puro JS.
+      </p>
+      <div class="proj-stack">
+        <span>JavaScript</span><span>Render</span><span>API externa</span>
+      </div>
+      <div class="proj-links">
+        <a class="btn btn-primary btn-sm" href="https://bqanime.onrender.com/" target="_blank" rel="noopener">Ver sitio <span aria-hidden="true">↗</span></a>
+        <a class="btn btn-ghost btn-sm" href="https://github.com/TriggerXZ/BQanime" target="_blank" rel="noopener">Código</a>
+      </div>
+      <div class="proj-shot">
+        <div class="shot-mini shot-bq">
+          <div class="shot-mini-h1">Best page to see anime</div>
+          <div class="shot-mini-sub">Catálogo · búsqueda · géneros</div>
+          <div class="shot-mini-row">
+            <div class="mchip">Acción</div><div class="mchip">Shonen</div><div class="mchip">Romance</div><div class="mchip">Seinen</div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- =============== AI / OPEN SOURCE =============== -->
+<section id="ai" class="section">
+  <header class="section-head">
+    <div class="eyebrow"><span class="eyebrow-bar"></span><span>03 · IA &amp; Open Source</span></div>
+    <h2 class="section-title">Skills, hooks y herramientas para LLMs.</h2>
+    <p class="section-sub">Open source, MIT-licensed, con tests. La base sobre la que construyo productos con IA.</p>
+  </header>
+
+  <div class="repos">
+    <a class="repo repo-featured" href="https://github.com/TriggerXZ/block-destructive-commands" target="_blank" rel="noopener">
+      <div class="repo-head">
+        <div class="repo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L3 7v6c0 5 4 9 9 10 5-1 9-5 9-10V7l-9-5z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <div class="repo-title">
+          <h3>block-destructive-commands</h3>
+          <div class="repo-sub">Claude Code PreToolUse hook — seguridad por defecto</div>
+        </div>
+        <span class="repo-badge">Featured</span>
+      </div>
+      <p class="repo-desc">
+        Hook para Claude Code que bloquea comandos destructivos antes de que se ejecuten
+        (<code>rm -rf</code>, <code>DROP TABLE</code>, <code>TRUNCATE</code>,
+        <code>DELETE FROM</code> sin WHERE, <code>git push --force</code>). Cero dependencias,
+        <strong>22 / 22 tests pasan</strong>. La pieza que faltaba para usar LLMs con confianza
+        en pipelines serios.
+      </p>
+      <div class="repo-meta">
+        <span class="repo-lang"><span class="lang-dot lang-shell"></span>Shell</span>
+        <span class="repo-lang"><span class="lang-dot lang-py"></span>Python</span>
+        <span class="repo-license">MIT</span>
+        <span class="repo-arrow" aria-hidden="true">↗</span>
+      </div>
+    </a>
+
+    <a class="repo" href="https://github.com/TriggerXZ/generate-changelog" target="_blank" rel="noopener">
+      <div class="repo-head">
+        <div class="repo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <path d="M14 2v6h6M8 13h8M8 17h6M9 9h.01"/>
+          </svg>
+        </div>
+        <div class="repo-title">
+          <h3>generate-changelog</h3>
+          <div class="repo-sub">Auto-generador de CHANGELOG.md</div>
+        </div>
+        <span class="repo-badge">MIT</span>
+      </div>
+      <p class="repo-desc">
+        Script bash auto-contenido que genera un <code>CHANGELOG.md</code> en formato
+        Keep-a-Changelog 1.1.0 desde el historial de git. Categoriza por conventional commits,
+        detecta breaking changes, idempotente, se niega a correr en dirty tree.
+      </p>
+      <div class="repo-meta">
+        <span class="repo-lang"><span class="lang-dot lang-shell"></span>Shell</span>
+        <span class="repo-license">MIT</span>
+        <span class="repo-arrow" aria-hidden="true">↗</span>
+      </div>
+    </a>
+
+    <a class="repo" href="https://github.com/TriggerXZ/claude-code-bounty-submissions" target="_blank" rel="noopener">
+      <div class="repo-head">
+        <div class="repo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/>
+          </svg>
+        </div>
+        <div class="repo-title">
+          <h3>claude-code-bounty-submissions</h3>
+          <div class="repo-sub">5 skills production-ready para Claude Code</div>
+        </div>
+        <span class="repo-badge">5 skills</span>
+      </div>
+      <p class="repo-desc">
+        Colección de 5 skills completas enviadas a un bounty board de la comunidad.
+        Cada una es self-contained, testeada y lista para mergear. Es la prueba
+        de que sé diseñar productos alrededor de un LLM: prompt, SKILL.md, edge cases y tests.
+      </p>
+      <div class="repo-meta">
+        <span class="repo-lang"><span class="lang-dot lang-md"></span>Markdown</span>
+        <span class="repo-license">MIT</span>
+        <span class="repo-arrow" aria-hidden="true">↗</span>
+      </div>
+    </a>
+
+    <a class="repo" href="https://github.com/TriggerXZ" target="_blank" rel="noopener">
+      <div class="repo-head">
+        <div class="repo-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
+          </svg>
+        </div>
+        <div class="repo-title">
+          <h3>Y más en github.com/TriggerXZ</h3>
+          <div class="repo-sub">~20 repos · públicos y privados</div>
+        </div>
+        <span class="repo-arrow" aria-hidden="true">↗</span>
+      </div>
+      <p class="repo-desc">
+        Perfil completo con proyectos en Astro, Dart/Flutter, TypeScript, Python y Bash.
+        Algunos en proceso activo de documentación.
+      </p>
+    </a>
+  </div>
+</section>
+
+<!-- =============== SKILLS / STACK =============== -->
+<section id="skills" class="section">
+  <header class="section-head">
+    <div class="eyebrow"><span class="eyebrow-bar"></span><span>04 · Stack</span></div>
+    <h2 class="section-title">Las herramientas que uso para entregar.</h2>
+  </header>
+
+  <div class="stack">
+    <div class="stack-col">
+      <h3>IA &amp; Datos</h3>
+      <ul>
+        <li><span class="tag">LLMs</span><span class="muted">Claude, GPT, Gemini</span></li>
+        <li><span class="tag">Prompt Engineering</span><span class="muted">SKILL.md · agentes</span></li>
+        <li><span class="tag">RAG</span><span class="muted">Conceptos y pipelines</span></li>
+        <li><span class="tag">Claude Code</span><span class="muted">Hooks, skills, plugins</span></li>
+        <li><span class="tag">SQL</span><span class="muted">MySQL, PostgreSQL</span></li>
+      </ul>
+    </div>
+    <div class="stack-col">
+      <h3>Web &amp; Full-Stack</h3>
+      <ul>
+        <li><span class="tag">Astro</span><span class="muted">Sitios estáticos · i18n</span></li>
+        <li><span class="tag">JavaScript / TS</span><span class="muted">ES2022+</span></li>
+        <li><span class="tag">HTML · CSS</span><span class="muted">Responsive · accesible</span></li>
+        <li><span class="tag">Python · Bash</span><span class="muted">Automatización</span></li>
+        <li><span class="tag">REST APIs · JSON</span><span class="muted">Integración</span></li>
+      </ul>
+    </div>
+    <div class="stack-col">
+      <h3>Deploy &amp; Workflow</h3>
+      <ul>
+        <li><span class="tag">Git · GitHub</span><span class="muted">Conventional commits</span></li>
+        <li><span class="tag">Netlify · Vercel</span><span class="muted">CI/CD</span></li>
+        <li><span class="tag">Render</span><span class="muted">Apps + servicios</span></li>
+        <li><span class="tag">VS Code</span><span class="muted">Daily driver</span></li>
+        <li><span class="tag">En proceso</span><span class="muted">Docker · Azure · N8N</span></li>
+      </ul>
+    </div>
+    <div class="stack-col stack-soft">
+      <h3>Soft skills</h3>
+      <ul>
+        <li><span class="dot-bullet"></span><span>Pensamiento crítico</span></li>
+        <li><span class="dot-bullet"></span><span>Comunicación efectiva</span></li>
+        <li><span class="dot-bullet"></span><span>Negociación</span></li>
+        <li><span class="dot-bullet"></span><span>Adaptabilidad al cambio</span></li>
+        <li><span class="dot-bullet"></span><span>Orientación a resultados</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- =============== EXPERIENCE =============== -->
+<section id="experience" class="section">
+  <header class="section-head">
+    <div class="eyebrow"><span class="eyebrow-bar"></span><span>05 · Experiencia</span></div>
+    <h2 class="section-title">Trayectoria.</h2>
+  </header>
+
+  <ol class="timeline">
+    <li class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-when">2025 — actual</div>
+      <h3>Co-fundador &amp; Desarrollador principal · <span class="muted">ScooterCoop</span></h3>
+      <p>
+        Producto desde cero: web, sistema de reservas, marca y operación.
+        Más de 1,240 rutas completadas, 2,340 reseñas verificadas.
+        Stack: Astro, JavaScript, Netlify, WhatsApp API.
+      </p>
+    </li>
+    <li class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-when">2022 — 2023</div>
+      <h3>Desarrollador Full-Stack · <span class="muted">RMG Insurance Service</span></h3>
+      <p>
+        Creación de componentes para el sitio web (UI, diseño responsive,
+        interactividad), envío de reportes y soporte a base de datos.
+      </p>
+    </li>
+    <li class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-when">2022 — 2023</div>
+      <h3>Programación Web · <span class="muted">Universidad del Litoral</span></h3>
+      <p>Formación técnica en desarrollo web full-stack.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- =============== CONTACT =============== -->
+<section id="contact" class="section">
+  <header class="section-head">
+    <div class="eyebrow"><span class="eyebrow-bar"></span><span>06 · Contacto</span></div>
+    <h2 class="section-title">¿Construimos algo juntos?</h2>
+    <p class="section-sub">Estoy abierto a posiciones junior/trainee en desarrollo IA, full-stack y automatización. Respondo en menos de 24 h.</p>
+  </header>
+
+  <div class="contact-grid">
+    <a class="contact-card" href="https://github.com/TriggerXZ" target="_blank" rel="noopener">
+      <div class="contact-ico">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.87-1.54-3.87-1.54-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.34.96.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.5 3.17-1.18 3.17-1.18.63 1.59.24 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.41-5.26 5.69.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.21.67.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+      </div>
+      <div>
+        <div class="contact-label">GitHub</div>
+        <div class="contact-handle">@TriggerXZ</div>
+      </div>
+      <span class="contact-arrow" aria-hidden="true">↗</span>
+    </a>
+
+    <a class="contact-card" href="https://www.linkedin.com/in/airton-m%C3%A1rquez-abril-5a9969426" target="_blank" rel="noopener">
+      <div class="contact-ico">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.59 0 4.25 2.36 4.25 5.43v6.31zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.78C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.78 24h20.44c.98 0 1.78-.78 1.78-1.74V1.74C24 .78 23.2 0 22.22 0z"/></svg>
+      </div>
+      <div>
+        <div class="contact-label">LinkedIn</div>
+        <div class="contact-handle">/in/airton-márquez-abril</div>
+      </div>
+      <span class="contact-arrow" aria-hidden="true">↗</span>
+    </a>
+
+    <a class="contact-card" href="mailto:kaminatrigger@gmail.com">
+      <div class="contact-ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 4h16v16H4z"/><path d="M4 7l8 6 8-6"/>
+        </svg>
+      </div>
+      <div>
+        <div class="contact-label">Email</div>
+        <div class="contact-handle">kaminatrigger@gmail.com</div>
+      </div>
+      <span class="contact-arrow" aria-hidden="true">↗</span>
+    </a>
+
+    <div class="contact-card contact-cv">
+      <div class="contact-ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/>
+        </svg>
+      </div>
+      <div>
+        <div class="contact-label">CV</div>
+        <div class="contact-handle">Disponible bajo solicitud</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 17l6-6 4 4 6-8"/><circle cx="4" cy="17" r="1.5" fill="currentColor"/><circle cx="20" cy="7" r="1.5" fill="currentColor"/>
+        </svg>
+      </span>
+      <span>Hecho con detalle por Airton Márquez · Barranquilla, CO · 2026</span>
+    </div>
+    <div class="footer-links">
+      <a href="https://github.com/TriggerXZ" target="_blank" rel="noopener">GitHub</a>
+      <a href="#web">Proyectos</a>
+      <a href="#ai">Open Source</a>
+      <a href="#contact">Contacto</a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
