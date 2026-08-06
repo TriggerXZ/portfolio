@@ -128,12 +128,16 @@ def job_entry(c, x, y, when, title, company, lines, max_w):
     c.setFont("Inter-600", 8)
     c.drawString(x, y, company.upper())
     y -= 4.6 * mm
-    # bullets
+    # bullets — un punto por ITEM lógico, continuaciones con indentación colgante
     for ln in lines:
-        for chunk in wrap(ln, "Inter-400", 9.0, max_w - 5 * mm):
-            # bullet dorado
-            c.setFillColor(GOLD)
-            c.circle(x + 1.3 * mm, y + 1.2, 0.9, fill=1, stroke=0)
+        chunks = wrap(ln, "Inter-400", 9.0, max_w - 5 * mm)
+        first = True
+        for chunk in chunks:
+            if first:
+                # bullet dorado solo en la primera línea del item
+                c.setFillColor(GOLD)
+                c.circle(x + 1.3 * mm, y + 1.2, 0.9, fill=1, stroke=0)
+                first = False
             c.setFillColor(BODY)
             c.setFont("Inter-400", 9.0)
             c.drawString(x + 3.4 * mm, y, chunk)
