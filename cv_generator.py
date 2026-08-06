@@ -207,14 +207,14 @@ def main():
     y = section_head(c, x, y, "02", "Experiencia profesional", MAIN_W)
     y -= 3 * mm
     y = job_entry(c, x, y - 5 * mm, "2025 — Actual", "Co-fundador & Desarrollador principal",
-        "ScooterCoop · Alquiler de scooters eléctricos, Malecón del Río (BAQ)",
+        "ScooterCoop",
         ["Producto desde cero: sitio web, sistema de reservas, marca y operación.",
          "Stack: Astro, JavaScript, Netlify, WhatsApp API.",
          "Resultados en producción: 1,240+ rutas, 2,340 reseñas, rating 4.8/5."],
         MAIN_W)
     y -= 2 * mm
     y = job_entry(c, x, y - 4 * mm, "2022 — 2023", "Desarrollador Full-Stack",
-        "RMG Insurance Service · Sector seguros",
+        "RMG Insurance Service",
         ["Componentes UI para el sitio web (diseño responsive, interactividad).",
          "Envío de reportes periódicos y soporte a base de datos."],
         MAIN_W)
