@@ -211,16 +211,14 @@ def main():
     y -= 3 * mm
     y = job_entry(c, x, y - 5 * mm, "2025 — Actual", "Co-fundador & Desarrollador principal",
         "ScooterCoop",
-        ["Diseño, desarrollo y despliegue de la plataforma completa: sitio web",
-         "corporativo, software de gestión de alquiler y sistema de reservas en línea.",
+        ["Diseño, desarrollo y despliegue de la plataforma completa: sitio web corporativo, software de gestión de alquiler y sistema de reservas en línea.",
          "Soporte técnico, mantenimiento y operación continua del servicio."],
         MAIN_W)
     y -= 2 * mm
     y = job_entry(c, x, y - 4 * mm, "2022 — 2023", "Desarrollador Full-Stack",
         "RMG Insurance Service",
-        ["Desarrollo de componentes de interfaz (UI) responsive e interactivos",
-         "para el sitio web corporativo. Elaboración de reportes y soporte a la",
-         "base de datos."],
+        ["Desarrollo de componentes de interfaz (UI) responsive e interactivos para el sitio web corporativo.",
+         "Elaboración de reportes y soporte a la base de datos."],
         MAIN_W)
     y -= 7 * mm
 
