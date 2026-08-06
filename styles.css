@@ -971,6 +971,15 @@ body::after {
 .contact-arrow { margin-left: auto; color: var(--gold); }
 .contact-cv { cursor: default; }
 .contact-cv:hover { transform: none; border-color: var(--line); }
+.cv-langs { display: flex; align-items: center; gap: 8px; }
+.cv-langs a {
+  color: var(--gold);
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: opacity var(--t-fast) var(--ease);
+}
+.cv-langs a:hover { opacity: 0.72; text-decoration: underline; }
+.cv-sep { color: var(--text-3); }
 
 /* ============================================================
    Footer
