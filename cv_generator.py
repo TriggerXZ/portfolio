@@ -1,95 +1,153 @@
 """
-Genera el CV PDF de Airton Márquez Abril.
+CV de Airton Márquez Abril — Edición Editorial Minimalista (claro).
 
-Estructura minimalista (mercado colombiano, 1 página A4):
+Estética: "quiet luxury" — serif Fraunces + sans Inter, blanco + dorado,
+numeración editorial, hairlines, mucho aire. 1 página A4.
 
-  ┌──────────────────┬───────────────────────────┐
-  │ EDUCACIÓN        │ PERFIL                    │
-  │ (sidebar)        │ (columna principal, arriba)│
-  │                  │                           │
-  │ HABILIDADES      │ EXPERIENCIA PROFESIONAL   │
-  │ TÉCNICAS         │                           │
-  │                  │ FORMACIÓN ACADÉMICA       │
-  │ IDIOMAS          │                           │
-  │                  │                           │
-  └──────────────────┴───────────────────────────┘
-
-Fuera (van en el portfolio):
-  - Proyectos destacados
-  - Formación continua
+  ┌───────────────────────────────────────────────────────┐
+  │  AIRTON MÁRQUEZ ABRIL                    (foto ○)      │
+  │  AI DEVELOPER JUNIOR · FULL-STACK BUILDER              │
+  │  barranquilla · email · github · linkedin             │
+  ├──────────────────────────────┬────────────────────────┤
+  │  01 · PERFIL                 │  EDUCACIÓN             │
+  │                              │  HABILIDADES TÉCNICAS  │
+  │  02 · EXPERIENCIA            │  HABILIDADES BLANDAS   │
+  │                              │  IDIOMAS               │
+  │  03 · FORMACIÓN              │                        │
+  ├──────────────────────────────┴────────────────────────┤
+  │ footer                                                    │
+  └───────────────────────────────────────────────────────┘
 """
 
 from reportlab.lib.pagesizes import A4
 from reportlab.lib import colors
 from reportlab.lib.units import mm
 from reportlab.pdfgen import canvas
-from reportlab.lib.utils import ImageReader
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.lib.utils import ImageReader, simpleSplit
 from pathlib import Path
 
-OUT = Path(r"D:\Programacion\portfolio\assets\CV-Airton-Marquez.pdf")
-AVATAR = Path(r"D:\Programacion\portfolio\assets\avatar.jpg")
+BASE = Path(r"D:\Programacion\portfolio")
+FONT_DIR = BASE / "assets" / "fonts"
+OUT = BASE / "assets" / "CV-Airton-Marquez.pdf"
+AVATAR = BASE / "assets" / "avatar.jpg"
 
-# Paleta
-BG          = colors.HexColor("#0a0a0a")
-BG_LIGHT    = colors.HexColor("#141414")
-LINE        = colors.HexColor("#262626")
-GOLD        = colors.HexColor("#f0b90b")
-GOLD_DARK   = colors.HexColor("#c99a06")
-TEXT        = colors.HexColor("#f5f5f5")
-TEXT_2      = colors.HexColor("#a3a3a3")
-TEXT_3      = colors.HexColor("#737373")
+# ---------- Paleta editorial claro ----------
+PAPER      = colors.HexColor("#ffffff")
+INK        = colors.HexColor("#161616")   # texto principal
+BODY       = colors.HexColor("#3d3d3d")   # cuerpo
+MUTED      = colors.HexColor("#8a8a8a")   # secundario
+FAINT      = colors.HexColor("#c9c9c9")   # terciario
+HAIRLINE   = colors.HexColor("#e8e6e0")   # líneas
+GOLD       = colors.HexColor("#a87f08")   # dorado oscuro (legible en blanco)
+GOLD_SOFT  = colors.HexColor("#d4a307")
 
 W, H = A4
-SIDE_W = 62 * mm    # sidebar
-PAD = 8 * mm
-HEADER_H = 48 * mm
+
+# ---------- Fuentes ----------
+pdfmetrics.registerFont(TTFont("Fraunces-500", str(FONT_DIR / "Fraunces-500.ttf")))
+pdfmetrics.registerFont(TTFont("Fraunces-600", str(FONT_DIR / "Fraunces-600.ttf")))
+pdfmetrics.registerFont(TTFont("Inter-400", str(FONT_DIR / "Inter-400.ttf")))
+pdfmetrics.registerFont(TTFont("Inter-500", str(FONT_DIR / "Inter-500.ttf")))
+pdfmetrics.registerFont(TTFont("Inter-600", str(FONT_DIR / "Inter-600.ttf")))
+pdfmetrics.registerFont(TTFont("Inter-700", str(FONT_DIR / "Inter-700.ttf")))
+
+# ---------- Layout ----------
+ML = 22 * mm          # margen izquierdo
+MR = 22 * mm          # margen derecho
+MT = 40 * mm          # margen superior
+MB = 30 * mm          # margen inferior
+CONTENT_W = W - ML - MR
+MAIN_X = ML
+SIDEBAR_W = 58 * mm
+SIDEBAR_X = W - MR - SIDEBAR_W
+GUTTER = 12 * mm
+MAIN_W = SIDEBAR_X - GUTTER - MAIN_X
 
 
-def draw_avatar(c, cx, cy, diameter):
+def wrap(text, font, size, max_w):
+    return simpleSplit(text, font, size, max_w)
+
+
+def draw_avatar(c, cx, cy, r):
     if not AVATAR.exists():
-        c.circle(cx, cy, diameter / 2, fill=1, stroke=0)
         return
     img = ImageReader(str(AVATAR))
     iw, ih = img.getSize()
     c.saveState()
     p = c.beginPath()
-    p.circle(cx, cy, diameter / 2)
+    p.circle(cx, cy, r)
     c.clipPath(p, stroke=0, fill=0)
-    c.drawImage(img,
-                cx - diameter / 2, cy - diameter / 2,
-                width=diameter, height=diameter,
-                mask='auto')
+    c.drawImage(img, cx - r, cy - r, width=2 * r, height=2 * r, mask="auto")
     c.restoreState()
-    c.setStrokeColor(GOLD)
-    c.setLineWidth(1.2)
-    c.circle(cx, cy, diameter / 2, fill=0, stroke=1)
+    c.setStrokeColor(GOLD_SOFT)
+    c.setLineWidth(1.0)
+    c.circle(cx, cy, r, fill=0, stroke=1)
 
 
-def section_title(c, x, y, text, width):
+def section_head(c, x, y, num, label, width, rules=True):
+    """Título de sección editorial: número serif dorado + label mayúsculas + hairline."""
     c.setFillColor(GOLD)
-    c.setFont("Helvetica-Bold", 8)
-    c.drawString(x, y, text.upper())
-    c.setStrokeColor(LINE)
-    c.setLineWidth(0.4)
-    c.line(x, y - 2, x + width, y - 2)
+    c.setFont("Fraunces-500", 12)
+    c.drawString(x, y, num)
+    c.setFillColor(INK)
+    c.setFont("Inter-700", 8.5)
+    c.drawString(x + 9 * mm, y + 1.5, label.upper())
+    if rules:
+        c.setStrokeColor(HAIRLINE)
+        c.setLineWidth(0.6)
+        c.line(x, y - 4, x + width, y - 4)
+    return y - 9 * mm
 
 
-def text_block(c, x, y, lines, leading=10.5, font="Helvetica", size=8.5, color=TEXT_2, max_w=None):
-    c.setFillColor(color)
-    c.setFont(font, size)
-    if isinstance(lines, str):
-        lines = [lines]
-    for line in lines:
-        if max_w:
-            from reportlab.lib.utils import simpleSplit
-            chunks = simpleSplit(line, font, size, max_w)
-            for ch in chunks:
-                c.drawString(x, y, ch)
-                y -= leading
-        else:
-            c.drawString(x, y, line)
-            y -= leading
-    return y
+def para(c, x, y, text, font="Inter-400", size=9.2, leading=13.5, color=BODY, max_w=MAIN_W, first_y=None):
+    lines = wrap(text, font, size, max_w)
+    yy = first_y if first_y is not None else y
+    for ln in lines:
+        c.setFillColor(color)
+        c.setFont(font, size)
+        c.drawString(x, yy, ln)
+        yy -= leading
+    return yy
+
+
+def job_entry(c, x, y, when, title, company, lines, max_w):
+    """Entrada de experiencia: fecha derecha, título, empresa dorada, bullets."""
+    # fecha derecha
+    c.setFillColor(MUTED)
+    c.setFont("Inter-500", 8.2)
+    c.drawRightString(x + max_w, y + 2, when)
+    # título
+    c.setFillColor(INK)
+    c.setFont("Inter-600", 11)
+    c.drawString(x, y, title)
+    y -= 5.2 * mm
+    # empresa
+    c.setFillColor(GOLD)
+    c.setFont("Inter-600", 8)
+    c.drawString(x, y, company.upper())
+    y -= 4.6 * mm
+    # bullets
+    for ln in lines:
+        for chunk in wrap(ln, "Inter-400", 9.0, max_w - 5 * mm):
+            # bullet dorado
+            c.setFillColor(GOLD)
+            c.circle(x + 1.3 * mm, y + 1.2, 0.9, fill=1, stroke=0)
+            c.setFillColor(BODY)
+            c.setFont("Inter-400", 9.0)
+            c.drawString(x + 3.4 * mm, y, chunk)
+            y -= 12.8
+    return y - 3 * mm
+
+
+def skill_item(c, x, y, label, indent=0):
+    c.setFillColor(GOLD)
+    c.circle(x + 1.3 * mm + indent, y + 1.1, 0.8, fill=1, stroke=0)
+    c.setFillColor(BODY)
+    c.setFont("Inter-400", 8.6)
+    c.drawString(x + 3.6 * mm + indent, y, label)
+    return y - 4.6 * mm
 
 
 def main():
@@ -99,243 +157,203 @@ def main():
     c.setSubject("AI Developer Junior · Full-Stack Builder")
     c.setCreator("Portfolio Airton Marquez")
 
-    # === Background ===
-    c.setFillColor(BG)
+    # fondo
+    c.setFillColor(PAPER)
     c.rect(0, 0, W, H, fill=1, stroke=0)
 
-    # === HEADER ===
-    c.setFillColor(BG_LIGHT)
-    c.rect(0, H - HEADER_H, W, HEADER_H, fill=1, stroke=0)
-    c.setStrokeColor(LINE)
-    c.setLineWidth(0.5)
-    c.line(0, H - HEADER_H, W, H - HEADER_H)
+    # ================= HEADER =================
+    # hairline superior fina dorada
+    c.setStrokeColor(GOLD_SOFT)
+    c.setLineWidth(1.2)
+    c.line(ML, H - 22 * mm, W - MR, H - 22 * mm)
 
-    # Avatar
-    avatar_d = 32 * mm
-    avatar_cx = 20 * mm
-    avatar_cy = H - HEADER_H / 2
-    draw_avatar(c, avatar_cx, avatar_cy, avatar_d)
+    # nombre — Fraunces grande
+    c.setFillColor(INK)
+    c.setFont("Fraunces-600", 27)
+    c.drawString(ML, H - 33 * mm, "Airton Márquez Abril")
 
-    # Name + role
-    tx = 20 * mm + avatar_d / 2 + 8 * mm
-    c.setFillColor(TEXT)
-    c.setFont("Helvetica-Bold", 22)
-    c.drawString(tx, H - 20 * mm, "AIRTON MÁRQUEZ ABRIL")
+    # rol — Inter 700 espaciado dorado
     c.setFillColor(GOLD)
-    c.setFont("Helvetica-Bold", 10)
-    c.drawString(tx, H - 28 * mm, "AI Developer Junior  ·  Full-Stack Builder  ·  Co-fundador @ ScooterCoop")
+    c.setFont("Inter-700", 8.2)
+    c.drawString(ML, H - 40 * mm, "AI DEVELOPER JUNIOR  ·  FULL-STACK BUILDER  ·  CO-FUNDADOR @ SCOOTERCOOP")
 
-    # Contact chips
-    cy = H - 36 * mm
-    contact_items = [
-        ("B",  "Barranquilla, CO"),
-        ("@",  "kaminatrigger@gmail.com"),
-        ("G",  "github.com/TriggerXZ"),
-        ("in", "linkedin.com/in/airton-márquez-abril"),
-    ]
-    x = tx
-    for icon, text in contact_items:
-        c.setFillColor(BG)
-        c.setStrokeColor(LINE)
-        c.setLineWidth(0.4)
-        chip_w = 4.5 * mm + c.stringWidth(text, "Helvetica", 8) + 3 * mm
-        c.roundRect(x, cy - 3.5 * mm, chip_w, 6.5 * mm, 1.5 * mm, fill=1, stroke=1)
-        c.setFillColor(GOLD)
-        c.circle(x + 2.7 * mm, cy, 1.2 * mm, fill=1, stroke=0)
-        c.setFillColor(TEXT)
-        c.setFont("Helvetica", 8)
-        c.drawString(x + 4.5 * mm, cy - 1.3 * mm, text)
-        x += chip_w + 2 * mm
+    # contacto — línea gris con separadores (2 filas si hace falta)
+    contact1 = "Barranquilla, CO   ·   kaminatrigger@gmail.com   ·   github.com/TriggerXZ"
+    contact2 = "linkedin.com/in/airton-márquez-abril"
+    c.setFillColor(MUTED)
+    c.setFont("Inter-400", 8.6)
+    c.drawString(ML, H - 45.5 * mm, contact1)
+    c.drawString(ML + 3 * mm, H - 49 * mm, contact2)
 
-    # === SIDEBAR (left) ===
-    side_x = PAD
-    side_w = SIDE_W - PAD
-    y_side = H - HEADER_H - 10 * mm
+    # avatar circular derecha
+    draw_avatar(c, W - MR - 10 * mm, H - 32 * mm, 8.5 * mm)
 
-    # Educación
-    section_title(c, side_x, y_side, "Educación", side_w)
-    y_side -= 8 * mm
+    # ================= COLUMNA PRINCIPAL =================
+    y = H - 45.5 * mm - 14 * mm
+    x = MAIN_X
 
-    edu = [
-        ("2022 — 2023", "Técnico en Programación Web", "Universidad del Litoral"),
-        ("2017",        "Bachiller",                   "Colegio Nuestra Señora del Rosario"),
-    ]
-    for when, title, inst in edu:
-        c.setFillColor(GOLD)
-        c.setFont("Helvetica-Bold", 7.5)
-        c.drawString(side_x, y_side, when)
-        y_side -= 3.8 * mm
-        c.setFillColor(TEXT)
-        c.setFont("Helvetica-Bold", 9)
-        c.drawString(side_x, y_side, title)
-        y_side -= 3.6 * mm
-        c.setFillColor(TEXT_3)
-        c.setFont("Helvetica", 8)
-        c.drawString(side_x, y_side, inst)
-        y_side -= 5.5 * mm
-
-    y_side -= 2 * mm
-
-    # Habilidades técnicas
-    section_title(c, side_x, y_side, "Habilidades técnicas", side_w)
-    y_side -= 7 * mm
-
-    tech_skills = [
-        ("IA & Datos",       ["Claude (Code, Skills, Hooks)", "LLMs · RAG · Prompt Eng.", "SQL · MySQL · PostgreSQL"]),
-        ("Web & Full-Stack", ["Astro · i18n", "JavaScript · TypeScript", "HTML · CSS · Responsive", "REST APIs · JSON"]),
-        ("Automatización",   ["Bash scripting", "Python", "GitHub Actions"]),
-        ("Deploy & Tools",   ["Git · GitHub", "Netlify · Vercel · Render", "VS Code"]),
-    ]
-    for cat, items in tech_skills:
-        c.setFillColor(GOLD)
-        c.setFont("Helvetica-Bold", 8)
-        c.drawString(side_x, y_side, cat)
-        y_side -= 4 * mm
-        for it in items:
-            c.setFillColor(GOLD)
-            c.circle(side_x + 1.2 * mm, y_side + 0.8 * mm, 0.5 * mm, fill=1, stroke=0)
-            c.setFillColor(TEXT)
-            c.setFont("Helvetica", 8)
-            c.drawString(side_x + 4 * mm, y_side, it)
-            y_side -= 3.6 * mm
-        y_side -= 1.2 * mm
-
-    y_side -= 1 * mm
-
-    # Habilidades blandas (compactas)
-    section_title(c, side_x, y_side, "Habilidades blandas", side_w)
-    y_side -= 7 * mm
-    soft = ["Pensamiento crítico", "Comunicación efectiva", "Negociación", "Adaptabilidad al cambio", "Orientación a resultados"]
-    for s in soft:
-        c.setFillColor(GOLD)
-        c.circle(side_x + 1.2 * mm, y_side + 0.8 * mm, 0.5 * mm, fill=1, stroke=0)
-        c.setFillColor(TEXT)
-        c.setFont("Helvetica", 8)
-        c.drawString(side_x + 4 * mm, y_side, s)
-        y_side -= 3.6 * mm
-    y_side -= 3 * mm
-
-    # Idiomas
-    section_title(c, side_x, y_side, "Idiomas", side_w)
-    y_side -= 7 * mm
-    langs = [("Español", "Nativo", 1.0), ("Inglés", "Intermedio (B1/B2)", 0.65)]
-    for name, lvl, pct in langs:
-        c.setFillColor(TEXT)
-        c.setFont("Helvetica", 8)
-        c.drawString(side_x, y_side, name)
-        c.setFillColor(TEXT_2)
-        c.setFont("Helvetica", 7.5)
-        c.drawRightString(side_x + side_w, y_side, lvl)
-        y_side -= 3 * mm
-        c.setFillColor(LINE)
-        c.roundRect(side_x, y_side, side_w, 1.2 * mm, 0.6 * mm, fill=1, stroke=0)
-        c.setFillColor(GOLD)
-        c.roundRect(side_x, y_side, side_w * pct, 1.2 * mm, 0.6 * mm, fill=1, stroke=0)
-        y_side -= 5 * mm
-
-    # === MAIN COLUMN (right) ===
-    main_x = SIDE_W + PAD / 2
-    main_w = W - main_x - PAD
-    y_main = H - HEADER_H - 10 * mm
-
-    # Perfil (arriba del main)
-    section_title(c, main_x, y_main, "Perfil", main_w)
-    y_main -= 8 * mm
-    y_main = text_block(c, main_x, y_main,
+    # ---- 01 · Perfil ----
+    y = section_head(c, x, y, "01", "Perfil", MAIN_W)
+    y = para(c, x, y - 4 * mm,
         "Desarrollador con base práctica en IA generativa, LLMs y automatización. "
         "Co-fundador de ScooterCoop, donde llevo producto desde cero. "
         "Stack principal: Astro, JavaScript/TypeScript, Python, Bash, SQL. "
         "En proceso activo de formación en N8N, Docker y cloud (Azure/GCP) para "
         "cerrar el stack completo de soluciones empresariales.",
-        leading=11, size=9, color=TEXT, max_w=main_w)
-    y_main -= 5 * mm
+        first_y=y - 4 * mm)
+    y -= 8 * mm
 
-    # Experiencia profesional
-    section_title(c, main_x, y_main, "Experiencia profesional", main_w)
-    y_main -= 8 * mm
+    # ---- 02 · Experiencia profesional ----
+    y = section_head(c, x, y, "02", "Experiencia profesional", MAIN_W)
+    y -= 3 * mm
+    y = job_entry(c, x, y - 5 * mm, "2025 — Actual", "Co-fundador & Desarrollador principal",
+        "ScooterCoop · Alquiler de scooters eléctricos, Malecón del Río (BAQ)",
+        ["Producto desde cero: sitio web, sistema de reservas, marca y operación.",
+         "Stack: Astro, JavaScript, Netlify, WhatsApp API.",
+         "Resultados en producción: 1,240+ rutas, 2,340 reseñas, rating 4.8/5."],
+        MAIN_W)
+    y -= 2 * mm
+    y = job_entry(c, x, y - 4 * mm, "2022 — 2023", "Desarrollador Full-Stack",
+        "RMG Insurance Service · Sector seguros",
+        ["Componentes UI para el sitio web (diseño responsive, interactividad).",
+         "Envío de reportes periódicos y soporte a base de datos."],
+        MAIN_W)
+    y -= 7 * mm
 
-    # --- ScooterCoop ---
+    # ---- 03 · Formación académica ----
+    y = section_head(c, x, y, "03", "Formación académica", MAIN_W)
+    y -= 4 * mm
+    # entrada formación
+    c.setFillColor(MUTED)
+    c.setFont("Inter-500", 8.2)
+    c.drawRightString(x + MAIN_W, y, "2022 — 2023")
+    c.setFillColor(INK)
+    c.setFont("Inter-600", 11)
+    c.drawString(x, y, "Técnico en Programación Web")
+    y -= 5 * mm
     c.setFillColor(GOLD)
-    c.setFont("Helvetica-Bold", 8)
-    c.drawString(main_x, y_main, "2025 — Actual")
-    c.setFillColor(TEXT)
-    c.setFont("Helvetica-Bold", 11)
-    c.drawRightString(main_x + main_w, y_main, "Co-fundador & Desarrollador principal")
-    y_main -= 5 * mm
-    c.setFillColor(GOLD_DARK)
-    c.setFont("Helvetica-Bold", 9)
-    c.drawString(main_x, y_main, "ScooterCoop  ·  Alquiler de scooters eléctricos, Malecón del Río (BAQ)")
-    y_main -= 5 * mm
-    y_main = text_block(c, main_x, y_main,
-        "Producto desde cero: sitio web, sistema de reservas, marca y operación. "
-        "Stack: Astro, JavaScript, Netlify, WhatsApp API. Resultados en producción: "
-        "1,240+ rutas, 2,340 reseñas verificadas, rating 4.8/5.",
-        leading=11, size=8.5, color=TEXT_2, max_w=main_w)
-    y_main -= 3 * mm
-
-    # --- RMG ---
+    c.setFont("Inter-600", 8)
+    c.drawString(x, y, "UNIVERSIDAD DEL LITORAL")
+    y -= 4.6 * mm
+    y = para(c, x, y, "HTML, CSS, JavaScript, SQL (MySQL), desarrollo full-stack, patrones de diseño responsive.", size=9.0, leading=12.8, max_w=MAIN_W)
+    y -= 3 * mm
+    c.setFillColor(MUTED)
+    c.setFont("Inter-500", 8.2)
+    c.drawRightString(x + MAIN_W, y, "2017")
+    c.setFillColor(INK)
+    c.setFont("Inter-600", 11)
+    c.drawString(x, y, "Bachiller")
+    y -= 5 * mm
     c.setFillColor(GOLD)
-    c.setFont("Helvetica-Bold", 8)
-    c.drawString(main_x, y_main, "2022 — 2023")
-    c.setFillColor(TEXT)
-    c.setFont("Helvetica-Bold", 11)
-    c.drawRightString(main_x + main_w, y_main, "Desarrollador Full-Stack")
-    y_main -= 5 * mm
-    c.setFillColor(GOLD_DARK)
-    c.setFont("Helvetica-Bold", 9)
-    c.drawString(main_x, y_main, "RMG Insurance Service  ·  Sector seguros")
-    y_main -= 5 * mm
-    y_main = text_block(c, main_x, y_main,
-        "Creación de componentes UI para el sitio web (diseño responsive, "
-        "interactividad), envío de reportes periódicos y soporte a base de datos.",
-        leading=11, size=8.5, color=TEXT_2, max_w=main_w)
-    y_main -= 4 * mm
+    c.setFont("Inter-600", 8)
+    c.drawString(x, y, "COLEGIO NUESTRA SEÑORA DEL ROSARIO")
 
-    # Formación académica (en main)
-    section_title(c, main_x, y_main, "Formación académica", main_w)
-    y_main -= 8 * mm
+    # ================= SIDEBAR =================
+    sx = SIDEBAR_X
+    sy = H - 45.5 * mm - 14 * mm
 
+    # línea vertical separadora
+    c.setStrokeColor(HAIRLINE)
+    c.setLineWidth(0.6)
+    c.line(SIDEBAR_X - GUTTER / 2, sy, SIDEBAR_X - GUTTER / 2, MB + 14 * mm)
+
+    # ---- Educación ----
+    c.setFillColor(INK)
+    c.setFont("Inter-700", 8.5)
+    c.drawString(sx, sy, "EDUCACIÓN")
+    c.setStrokeColor(GOLD_SOFT)
+    c.setLineWidth(0.8)
+    c.line(sx, sy - 3.5, sx + SIDEBAR_W, sy - 3.5)
+    sy -= 8 * mm
+
+    for when, title, inst in [
+        ("2022 — 2023", "Técnico en Programación Web", "Universidad del Litoral"),
+        ("2017", "Bachiller", "Colegio Nuestra Señora del Rosario"),
+    ]:
+        c.setFillColor(GOLD)
+        c.setFont("Inter-600", 7.8)
+        c.drawString(sx, sy, when)
+        sy -= 3.8 * mm
+        c.setFillColor(INK)
+        c.setFont("Inter-600", 9.6)
+        c.drawString(sx, sy, title)
+        sy -= 3.6 * mm
+        c.setFillColor(MUTED)
+        c.setFont("Inter-400", 8.2)
+        c.drawString(sx, sy, inst)
+        sy -= 6 * mm
+
+    sy -= 2 * mm
+
+    # ---- Habilidades técnicas ----
+    c.setFillColor(INK)
+    c.setFont("Inter-700", 8.5)
+    c.drawString(sx, sy, "HABILIDADES TÉCNICAS")
+    c.setStrokeColor(GOLD_SOFT)
+    c.setLineWidth(0.8)
+    c.line(sx, sy - 3.5, sx + SIDEBAR_W, sy - 3.5)
+    sy -= 8 * mm
+
+    skills = [
+        ("IA & Datos", ["Claude (Code, Skills, Hooks)", "LLMs · RAG · Prompt Eng.", "SQL · MySQL · PostgreSQL"]),
+        ("Web & Full-Stack", ["Astro · i18n", "JavaScript · TypeScript", "HTML · CSS · Responsive", "REST APIs · JSON"]),
+        ("Automatización", ["Bash scripting", "Python", "GitHub Actions"]),
+        ("Deploy & Tools", ["Git · GitHub", "Netlify · Vercel · Render", "VS Code"]),
+    ]
+    for cat, items in skills:
+        c.setFillColor(GOLD)
+        c.setFont("Inter-600", 8)
+        c.drawString(sx, sy, cat.upper())
+        sy -= 4.2 * mm
+        for it in items:
+            sy = skill_item(c, sx, sy, it)
+        sy -= 1.6 * mm
+
+    sy -= 1 * mm
+
+    # ---- Habilidades blandas ----
+    c.setFillColor(INK)
+    c.setFont("Inter-700", 8.5)
+    c.drawString(sx, sy, "HABILIDADES BLANDAS")
+    c.setStrokeColor(GOLD_SOFT)
+    c.setLineWidth(0.8)
+    c.line(sx, sy - 3.5, sx + SIDEBAR_W, sy - 3.5)
+    sy -= 8 * mm
+
+    for s in ["Pensamiento crítico", "Comunicación efectiva", "Negociación",
+              "Adaptabilidad al cambio", "Orientación a resultados"]:
+        sy = skill_item(c, sx, sy, s)
+    sy -= 2 * mm
+
+    # ---- Idiomas ----
+    c.setFillColor(INK)
+    c.setFont("Inter-700", 8.5)
+    c.drawString(sx, sy, "IDIOMAS")
+    c.setStrokeColor(GOLD_SOFT)
+    c.setLineWidth(0.8)
+    c.line(sx, sy - 3.5, sx + SIDEBAR_W, sy - 3.5)
+    sy -= 8 * mm
+
+    for name, lvl in [("Español", "Nativo"), ("Inglés", "Intermedio (B1/B2)")]:
+        c.setFillColor(INK)
+        c.setFont("Inter-600", 9.2)
+        c.drawString(sx, sy, name)
+        c.setFillColor(MUTED)
+        c.setFont("Inter-400", 8.2)
+        c.drawRightString(sx + SIDEBAR_W, sy, lvl)
+        sy -= 5 * mm
+
+    # ================= FOOTER =================
+    c.setStrokeColor(HAIRLINE)
+    c.setLineWidth(0.6)
+    c.line(ML, MB - 6 * mm, W - MR, MB - 6 * mm)
+    c.setFillColor(MUTED)
+    c.setFont("Inter-400", 7.6)
+    c.drawCentredString(W / 2, MB - 12 * mm,
+        "Airton Márquez Abril  ·  AI Developer Junior  ·  Barranquilla, Colombia")
     c.setFillColor(GOLD)
-    c.setFont("Helvetica-Bold", 8)
-    c.drawString(main_x, y_main, "2022 — 2023")
-    c.setFillColor(TEXT)
-    c.setFont("Helvetica-Bold", 11)
-    c.drawString(main_x + 22 * mm, y_main, "Técnico en Programación Web")
-    y_main -= 5 * mm
-    c.setFillColor(GOLD_DARK)
-    c.setFont("Helvetica", 9)
-    c.drawString(main_x, y_main, "Universidad del Litoral")
-    y_main -= 5 * mm
-    y_main = text_block(c, main_x, y_main,
-        "HTML, CSS, JavaScript, SQL (MySQL), desarrollo full-stack, "
-        "patrones de diseño responsive.",
-        leading=10.5, size=8.5, color=TEXT_2, max_w=main_w)
-    y_main -= 2 * mm
-
-    c.setFillColor(GOLD)
-    c.setFont("Helvetica-Bold", 8)
-    c.drawString(main_x, y_main, "2017")
-    c.setFillColor(TEXT)
-    c.setFont("Helvetica-Bold", 11)
-    c.drawString(main_x + 22 * mm, y_main, "Bachiller")
-    y_main -= 5 * mm
-    c.setFillColor(GOLD_DARK)
-    c.setFont("Helvetica", 9)
-    c.drawString(main_x, y_main, "Colegio Nuestra Señora del Rosario")
-    y_main -= 6 * mm
-
-    # === FOOTER ===
-    c.setFillColor(BG_LIGHT)
-    c.rect(0, 0, W, 10 * mm, fill=1, stroke=0)
-    c.setStrokeColor(LINE)
-    c.setLineWidth(0.4)
-    c.line(0, 10 * mm, W, 10 * mm)
-    c.setFillColor(TEXT_3)
-    c.setFont("Helvetica", 7)
-    c.drawString(PAD, 4 * mm, "Airton Márquez Abril  ·  AI Developer Junior  ·  Barranquilla, Colombia")
-    c.setFillColor(GOLD)
-    c.setFont("Helvetica-Bold", 7)
-    c.drawRightString(W - PAD, 4 * mm, "Portfolio: triggerxz.github.io/portfolio")
+    c.setFont("Inter-600", 7.6)
+    c.drawCentredString(W / 2, MB - 17 * mm, "Portfolio: triggerxz.github.io/portfolio")
 
     c.showPage()
     c.save()
