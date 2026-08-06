@@ -185,8 +185,8 @@ def main():
     c.drawString(ML, H - 45.5 * mm, contact1)
     c.drawString(ML + 3 * mm, H - 49 * mm, contact2)
 
-    # avatar circular derecha
-    draw_avatar(c, W - MR - 10 * mm, H - 32 * mm, 8.5 * mm)
+    # avatar circular derecha — 26mm diámetro (13mm radio), centrado contra el nombre
+    draw_avatar(c, W - MR - 15 * mm, H - 34.5 * mm, 13 * mm)
 
     # ================= COLUMNA PRINCIPAL =================
     y = H - 45.5 * mm - 14 * mm
