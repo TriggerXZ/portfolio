@@ -195,11 +195,13 @@ def main():
     # ---- 01 · Perfil ----
     y = section_head(c, x, y, "01", "Perfil", MAIN_W)
     y = para(c, x, y - 4 * mm,
-        "Desarrollador con base práctica en IA generativa, LLMs y automatización. "
-        "Co-fundador de ScooterCoop, donde llevo producto desde cero. "
-        "Stack principal: Astro, JavaScript/TypeScript, Python, Bash, SQL. "
-        "En proceso activo de formación en N8N, Docker y cloud (Azure/GCP) para "
-        "cerrar el stack completo de soluciones empresariales.",
+        "Desarrollador web orientado a IA generativa y automatización inteligente. "
+        "Co-fundador y desarrollador principal de ScooterCoop, donde llevé la plataforma "
+        "completa de la idea al despliegue: arquitectura, desarrollo y operación. "
+        "Experiencia construyendo soluciones full-stack con Astro, JavaScript/TypeScript, "
+        "Python y SQL, e integrando APIs y modelos de IA (Claude, LLMs) en productos "
+        "en producción. Formación activa en N8N, Docker y cloud (Azure/GCP) para "
+        "soluciones empresariales.",
         first_y=y - 4 * mm)
     y -= 8 * mm
 
@@ -208,14 +210,16 @@ def main():
     y -= 3 * mm
     y = job_entry(c, x, y - 5 * mm, "2025 — Actual", "Co-fundador & Desarrollador principal",
         "ScooterCoop",
-        ["Página web, software de alquiler y sistema de reservas.",
-         "Soporte y operación del servicio."],
+        ["Diseño, desarrollo y despliegue de la plataforma completa: sitio web",
+         "corporativo, software de gestión de alquiler y sistema de reservas en línea.",
+         "Soporte técnico, mantenimiento y operación continua del servicio."],
         MAIN_W)
     y -= 2 * mm
     y = job_entry(c, x, y - 4 * mm, "2022 — 2023", "Desarrollador Full-Stack",
         "RMG Insurance Service",
-        ["Componentes UI para el sitio web (responsive, interactividad).",
-         "Reportes y soporte a base de datos."],
+        ["Desarrollo de componentes de interfaz (UI) responsive e interactivos",
+         "para el sitio web corporativo. Elaboración de reportes y soporte a la",
+         "base de datos."],
         MAIN_W)
     y -= 7 * mm
 
