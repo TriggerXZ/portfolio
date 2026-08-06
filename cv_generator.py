@@ -208,15 +208,14 @@ def main():
     y -= 3 * mm
     y = job_entry(c, x, y - 5 * mm, "2025 — Actual", "Co-fundador & Desarrollador principal",
         "ScooterCoop",
-        ["Producto desde cero: sitio web, sistema de reservas, marca y operación.",
-         "Stack: Astro, JavaScript, Netlify, WhatsApp API.",
-         "Resultados en producción: 1,240+ rutas, 2,340 reseñas, rating 4.8/5."],
+        ["Página web, software de alquiler y sistema de reservas.",
+         "Soporte y operación del servicio."],
         MAIN_W)
     y -= 2 * mm
     y = job_entry(c, x, y - 4 * mm, "2022 — 2023", "Desarrollador Full-Stack",
         "RMG Insurance Service",
-        ["Componentes UI para el sitio web (diseño responsive, interactividad).",
-         "Envío de reportes periódicos y soporte a base de datos."],
+        ["Componentes UI para el sitio web (responsive, interactividad).",
+         "Reportes y soporte a base de datos."],
         MAIN_W)
     y -= 7 * mm
 
